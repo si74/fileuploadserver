@@ -12,9 +12,6 @@ func main() {
 	addr := ":8080"
 	numWorkers := 10
 
-	// TODO (sneha): bit-shifting to read parts of a packet
-	// TODO (sneha): use buffered channel as a semphore for how many workers should be available
-
 	// NOTE: Under the hood this is making multiple syscalls (as are the calls to closer the listener and accept an incoming connection).
 	listener, err := net.Listen("tcp", addr)
 	if err != nil {
@@ -37,6 +34,7 @@ func main() {
 			for {
 				fmt.Printf("accepting tcp connection from: %s", conn.RemoteAddr().String())
 				_, err := conn.Read(buff)
+				// TODO (sneha): bit-shifting to read parts of the http packet
 				if err != nil {
 					// TODO(sneha): handle connection being closed differently (switch case for error types)
 					log.Printf("error reading from conn: %v", conn.RemoteAddr().String())

@@ -24,6 +24,8 @@ func main() {
 	mux := http.NewServeMux()
 	mux.Handle("/health", &healthHandler{})
 	mux.Handle("/upload", &uploadHandler{})
+	// TODO(sneha): endpoint to retrieve file
+	// TODO(sneha): endpoint to delete existing file
 
 	http.ListenAndServe(addr, mux)
 }
