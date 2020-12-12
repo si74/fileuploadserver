@@ -45,6 +45,11 @@ func main() {
 					break
 				}
 				fmt.Println(string(buff))
+				fmt.Printf("request protocol: %v", string(buff[:16]))
+				fmt.Printf("host: %v", string(buff[16:38]))
+				fmt.Printf("user agent: %v", string(buff[38:64]))
+				fmt.Printf("accept: %v", string(buff[64:77]))
+				fmt.Printf("body: %v\n", string(buff[130:]))
 			}
 
 			// Defer to run before goroutine exits - release worker and close connection
