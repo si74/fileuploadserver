@@ -35,8 +35,10 @@ func main() {
 			for {
 				buff := make([]byte, 1500) // TODO (sneha): variable for buffer size
 				_, err := conn.Read(buff)
-				// TODO (sneha): bit-shifting to read parts of the http packet
-				// have an HTTPpacket struct and marshal/unmarshal methods
+				// TODO(sneha): bit-shifting to read parts of the TCP packet
+				// TODO(sneha): Figure out how an HTTP request with a large filesize would be spread over multiple TCP packets
+				// assuming an MTU of 1500 bytes
+
 				if err != nil {
 					// TODO(sneha): handle connection being closed differently (switch case for error types)
 					log.Printf("error reading from conn: %v \n", conn.RemoteAddr().String())
