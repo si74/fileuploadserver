@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
+	"time"
 )
 
 func main() {
@@ -12,6 +13,14 @@ func main() {
 	if err != nil {
 		fmt.Printf("trouble making connection: %v", err)
 	}
+
+	go func() {
+		for {
+			conn.Write([]byte("string"))
+			time.Sleep(2 * time.Second)
+		}
+	}()
+
 	for {
 		buff := make([]byte, 1500)
 		fmt.Println("attempting to read...")
